@@ -5,9 +5,10 @@ const userRouter = express.Router();
 
 userRouter.use(express.urlencoded({ extended: true }));
 
-userRouter.get("/", isUserLogin, function (req, res) {
+userRouter.get("/", isUserLogin, async function (req, res) {
+    const data = await User.findOne({"email":req.session.email})
     res.setHeader('Cache-Control', 'no-store');
-    res.render("home.ejs");
+    res.render("home.ejs",{data});
 });
 
 userRouter.get("/login", preventAutoLogin, function (req, res) {
@@ -35,15 +36,15 @@ userRouter.get("/signUp", function (req, res) {
 });
 
 userRouter.post("/signup", async function (req, res) {
-    if (!req.body.email || !req.body.password) {
-        return res.status(400).send('Email and password are required');
-    }
+    // if (!req.body.email || !req.body.password) {
+    //     return res.status(400).send('Email and password are required');
+    // }
 
     try {
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).send('Email already in use');
-        }
+        }else{
 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({ email: req.body.email, password: hashedPassword });
@@ -51,6 +52,7 @@ userRouter.post("/signup", async function (req, res) {
         req.session.email = req.body.email;
         req.session.userStatus = true;
         res.redirect("/login");
+        }
     } catch (error) {
         console.error('Error signing up:', error);
         res.status(500).send('Error signing up');
