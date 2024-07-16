@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!--  -->
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--  -->
+    <link rel="stylesheet" href="/signUp.css">
+</head>
+
+<body>
+    <!-- user signup page -->
+    <div class="main">
+        <div class="container-fluid  containerMod d-flex align-items-center justify-content-center">
+            <div class="row  rowMod-1 flex-column  rounded-4">
+               <form action="/signup" method="post">
+                <div class="col-6 colMod-2 w-100">
+                    <div class="form-floating mb-3 form-floatingOne">
+                        <input type="email" id="email" name="email" class="form-control shadow-none" id="floatingInput" placeholder="email"
+                            style="background-color: #EEF7FF;">
+                        <label for="floatingInput">
+                            <p>Email address</p>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 form-floatingTwo">
+                        <input type="password" name="password" id="password" class="form-control  shadow-none" id="floatingPassword"
+                            placeholder="password">
+                        <label for="floatingPassword">
+                            <p>Password</p>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 form-floatingThree">
+                        <input type="password"  id="confirmPassword" class="form-control  shadow-none" id="floatingPassword"
+                            placeholder="userName">
+                        <label for="floatingInput">
+                            <p>Confirm Password</p>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 form-floatingFour">
+                        <input type="text" name="phoneNumber" id="phoneNumber" class="form-control  shadow-none" id="floatingInput"
+                            placeholder="phone number">
+                        <label for="floatingInput">
+                            <p>phone number</p>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 form-floatingFive">
+                        <input type="text" name="name" id="userName" class="form-control  shadow-none" id="floatingInput"
+                            placeholder="userName">
+                        <label for="floatingInput">
+                            <p>Username</p>
+                        </label>
+                    </div>
+                    <div class="form-floating mb-3 form-floatingSix">
+                        <div class="dropdown dropup" style="position: relative;">
+                            <button class="rounded-3 dropdown-toggle dropDown-btn" type="button"
+                                data-bs-toggle="dropdown" id="genderButton" aria-expanded="false">Gender</button>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-item d-flex"><input type="checkbox"  id="genderMale" name="male">
+                                    <p>Male</p>
+                                </li>
+                                <li class="dropdown-item d-flex"><input type="checkbox"  id="genderFemale" name="female">
+                                    <p>Female</p>
+                                </li>
+                                <li class="dropdown-item d-flex"><input type="checkbox"  id="genderOther" name="other">
+                                    <p>Other</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6  colMod-3 w-100 d-flex flex-column justify-content-evenly ">
+                    <div class="mb-3">
+                        <input type="checkbox" name="termsConditionStatus" id="termsCondition"><a href="#"><p class="ms-2 termsConditionlinkText d-inline">terms & condition</p></a>
+                    </div>
+                    <button class="rounded-4" id="submitButton" type="button">SignUp</button>
+                </div>
+               </form>
+            </div>
+        </div>
+    </div>
+    <!-- form validation -->
+    <script>
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const userName = document.getElementById("userName");
+        const phoneNumber = document.getElementById("phoneNumber");
+        const termsCondition = document.getElementById("termsCondition");
+        const age = document.getElementById("age");
+        const genderMale = document.getElementById("genderMale");
+        const genderFeMale = document.getElementById("genderFemale");
+        const genderOther = document.getElementById("genderOther");
+        const submitButton = document.getElementById("submitButton");
+        const emailBox = document.querySelector(".form-floatingOne");
+        const passwordBox = document.querySelector(".form-floatingTwo");
+        const confirmPasswordBox = document.querySelector(".form-floatingThree");
+        const phoneNumberBox = document.querySelector(".form-floatingFour");
+        const userNameBox = document.querySelector(".form-floatingFive");
+        const genderButton = document.getElementById("genderButton");
+        const termsConditionCheckBox = document.getElementById("termsCondition");
+        const termsConditionlinkText = document.querySelector(".termsConditionlinkText");
+        const form = document.forms[0]
+        // form-floatingOne
+        // form-floatingTwo
+        
+        const regexEmail = /^\s*(?=.*\d)[a-zA-Z0-9._%+-]+@gmail\.com\s*$/
+        const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+        const regexPhoneNumber = /^1\d{9}$/gm
+
+        
+        submitButton.addEventListener("click",function(){
+            if(!(regexEmail.test(email.value))){  
+                emailBox.classList.add("errStyle")
+                emailBox.children[0].style.border="1px solid red";
+                emailBox.children[1].children[0].textContent= "Invalid Email Id";
+                emailBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+                console.log("d");
+            }else if(!(regexPassword.test(password.value))){
+               console.log("password wrong");
+               passwordBox.classList.add("errStyle")
+               passwordBox.children[0].style.border="1px solid red";
+               passwordBox.children[1].children[0].textContent= "Invalid Password";
+               passwordBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            }else if(confirmPassword.value!==password.value){
+                console.log("try to enter same password");
+               confirmPasswordBox.classList.add("errStyle")
+               confirmPasswordBox.children[0].style.border="1px solid red";
+               confirmPasswordBox.children[1].children[0].textContent= "try to enter same password";
+               confirmPasswordBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            }else if(!(regexPhoneNumber.test(phoneNumber.value))){
+                phoneNumberBox.classList.add("errStyle")
+                phoneNumberBox.children[0].style.border="1px solid red";
+                phoneNumberBox.children[1].children[0].textContent= "Enter max 1-10";
+                phoneNumberBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            } else if(!(isNaN(userName.value))){
+                userNameBox.classList.add("errStyle")
+                userNameBox.children[0].style.border="1px solid red";
+                userNameBox.children[1].children[0].textContent= "Enter in letters";
+                userNameBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            }else if(!(genderMale.checked||genderFeMale.checked||genderOther.checked)){
+           genderButton.classList.remove("dropdown-menu")
+           genderButton.classList.add("dropdown-menu-error")
+            }else if(!(termsConditionCheckBox.checked)){
+                termsConditionlinkText.style.color="red"
+            }else{
+                console.log("submitted");
+                form.submit()
+                email.value="";
+                password.value="";
+               emailBox.children[0].style.border="none";
+               emailBox.children[1].children[0].textContent="Email address";
+               emailBox.children[1].children[0].style.color= ""
+              emailBox.classList.remove("errStyle");
+              passwordBox.children[0].style.border="none";
+              passwordBox.children[1].children[0].textContent="Password";
+              passwordBox.children[1].children[0].style.color= ""
+              passwordBox.classList.remove("errStyle");
+              confirmPasswordBox.classList.remove("errStyle")
+               confirmPasswordBox.children[0].style.border="";
+               confirmPasswordBox.children[1].children[0].textContent= "Confirm password";
+               confirmPasswordBox.children[1].children[0].style.color= ""
+                phoneNumberBox.children[0].style.border="none";
+                phoneNumberBox.children[1].children[0].textContent= "Username";
+                phoneNumberBox.children[1].children[0].style.color= ""
+                phoneNumberBox.classList.remove("errStyle");
+                userNameBox.children[0].style.border="none";
+                userNameBox.children[1].children[0].textContent= "Username";
+                userNameBox.children[1].children[0].style.color= ""
+                userNameBox.classList.remove("errStyle");
+                genderButton.classList.add("dropdown-menu")
+                genderButton.classList.remove("dropdown-menu-error")
+                termsConditionlinkText.style.color=""
+            }
+        })
+    </script>
+    <!--  -->
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+.containerMod {
+    height: 100vh;
+    width: 100%;
+    background-color: #CDE8E5;
+}
+
+.rowMod-1 {
+    /* form */
+    width: 350px;
+    height: 390px;
+    border: 6px solid #EEF7FF;
+    background-color: #EEF7FF;
+    box-shadow: 14px 15.5px 6px 0 #7AB2B2;
+    ;
+}
+
+.rowMod-1> form > .colMod-1 {
+    width: 100%;
+    height: 88px;
+    text-align: center;
+}
+
+.rowMod-1> form > .colMod-1>span>.icon-1 {
+    margin-top: 25px;
+}
+
+.rowMod-1> form > .colMod-2 {
+    width: 100%;
+    height: 142px;
+    padding: 0 20px;
+}
+
+input[type='email'] {
+    color: #7AB2B2 !important;
+    border: 1px solid #7AB2B2 !important;
+    background-color: #EEF7FF !important;
+}
+
+input[type='password'] {
+    color: #7AB2B2 !important;
+    border: 1px solid #7AB2B2 !important;
+    background-color: #EEF7FF !important;
+}
+
+input[type='checkbox'] {
+    color: #7AB2B2 !important;
+    border-color: #7AB2B2 !important;
+    accent-color: #4D869C !important;
+}
+
+input[type='checkbox']::before {
+    color: #7AB2B2 !important;
+    border-color: #7AB2B2 !important;
+    accent-color: #4D869C !important;
+}
+
+a {
+    text-decoration: none;
+    color: #7AB2B2;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+p {
+    color: #7AB2B2;
+}
+
+.rowMod-1> form > .colMod-3 {
+    width: 100%;
+    height: 140px;
+    padding: 5px 10px;
+}
+
+.rowMod-1> form > .colMod-3>button {
+    outline: none;
+    border: none;
+    padding: 12px 0;
+    width: 230px;
+    margin-left: 30px;
+    background-color: #4D869C;
+    color: #EEF7FF;
+}
+
+.rowMod-1> form > .colMod-3>.link1 {
+    font-size: 0.90rem;
+    margin-bottom: 10px;
+}
+
+.rowMod-1> form > .colMod-3>.link2 {
+    text-align: center;
+    font-size: 0.70rem;
+}
+
+.errStyle{
+    border: 2px solid rgba(255, 0, 0, 0.352) !important;
+    background-color: rgba(255, 0, 0, 0.5) !important;
+    /* color: rgba(255, 0, 0, 0.5) !important; */
+    border-radius: 9px !important;
+}
+

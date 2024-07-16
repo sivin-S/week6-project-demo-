@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!--  -->
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--  -->
+    <link rel="stylesheet" href="/login.css">
+</head>
+
+<body>
+    <!-- user login page -->
+    <div class="main">
+        <div class="container-fluid  containerMod d-flex align-items-center justify-content-center">
+            <div class="row  rowMod-1 flex-column  rounded-4">
+                <div class="col-4 colMod-1 w-100">
+                    <span><i class="fa-solid fa-user fa-3x icon-1" style="color: #4D869C;"></i></span>
+                </div>
+              <form action="/login" method="post">
+                  <div class="col-4 colMod-2 w-100">
+                    <div class="form-floating form-floatingOne mb-3">
+                        <input type="email"  id="email" required name="email" class="form-control shadow-none"  id="floatingInput" placeholder="email">
+                        <label for="floatingInput">
+                            <p>Email address</p>
+                        </label>
+                    </div>
+                    <div class="form-floating form-floatingTwo">
+                        <input type="password" name="password" required id="password" class="form-control  shadow-none" id="floatingPassword"
+                            placeholder="Password">
+                        <label for="floatingPassword">
+                            <p>Password</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-4  colMod-3 w-100 d-flex flex-column justify-content-evenly">
+                    <a href="/signUp" class="link1">don't have account ?</a>
+                    <button id="submitButton"  type="button" class="rounded-4">login</button>
+                    <a href="#" class="link2">terms & condition</a>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- form validation -->
+    <script>
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const submitButton = document.getElementById("submitButton");
+        const emailBox = document.querySelector(".form-floatingOne");
+        const passwordBox = document.querySelector(".form-floatingTwo");
+        const form = document.forms[0]
+        // form-floatingOne
+        // form-floatingTwo
+        
+        const regexEmail = /^\s*(?=.*\d)[a-zA-Z0-9._%+-]+@gmail\.com\s*$/
+        const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+
+        
+        submitButton.addEventListener("click",function(){
+            if(!(regexEmail.test(email.value))){  
+                emailBox.classList.add("errStyle")
+                emailBox.children[0].style.border="1px solid red";
+                emailBox.children[1].children[0].textContent= "Invalid Email Id";
+                emailBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            }else if(!(regexPassword.test(password.value))){
+               passwordBox.classList.add("errStyle")
+               passwordBox.children[0].style.border="1px solid red";
+               passwordBox.children[1].children[0].textContent= "Invalid Password";
+               passwordBox.children[1].children[0].style.color= "rgba(255, 0, 0, 0.352)"
+            }else{
+                form.submit()
+                email.value="";
+                password.value="";
+               emailBox.children[0].style.border="none";
+               emailBox.children[1].children[0].textContent="Email address";
+               emailBox.children[1].children[0].style.color= ""
+              emailBox.classList.remove("errStyle");
+              passwordBox.children[0].style.border="none";
+              passwordBox.children[1].children[0].textContent="Password";
+              passwordBox.children[1].children[0].style.color= ""
+              passwordBox.classList.remove("errStyle");
+            }
+        })
+       
+
+    </script>
+    <!--  -->
+</body>
+
+</html>
