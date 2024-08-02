@@ -36,13 +36,13 @@ const adminSession = session({
 
 // setting templates multiple path using " [] "
 app.set("views", [
-    path.join(__dirname + "/views/user"),
-    path.join(__dirname + "/views/admin")
+    path.join(__dirname , "/views/user"),
+    path.join(__dirname , "/views/admin")
 ]);
 
 // setup static files
-app.use("/", express.static(path.join(__dirname + "/public/user")));
-app.use("/admin", express.static(path.join(__dirname + "/public/admin")));
+app.use("/", express.static(path.join(__dirname , "/public/user")));
+app.use("/admin", express.static(path.join(__dirname , "/public/admin")));
 
 // Apply user session middleware to user routes
 app.use("/", userSession, userRouter);
